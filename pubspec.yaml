@@ -1,0 +1,29 @@
+name: brew_flutter
+description: A Flutter frontend for homebrew
+
+publish_to: "none"
+
+version: 0.0.1+1
+
+environment:
+  sdk: ">=2.17.0 <3.0.0"
+  flutter: "3.0.0"
+
+dependencies:
+  cupertino_icons: ^1.0.4
+  flutter:
+    sdk: flutter
+  flutter_riverpod: ^2.0.0-dev.7
+  linkable: ^3.0.1
+  macos_ui: ^1.4.1
+  rxdart: ^0.27.3
+  timeago: ^3.2.2
+  url_launcher: ^6.1.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  very_good_analysis: ^2.4.0
+
+flutter:
+  uses-material-design: true
