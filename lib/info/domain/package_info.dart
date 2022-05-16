@@ -1,12 +1,12 @@
 class PackageInfo {
-  PackageInfo(
-    this.name,
-    this.version,
-    this.description,
-    this.url,
-    this.location,
-    this.installationDate,
-  );
+  PackageInfo({
+    required this.name,
+    required this.version,
+    required this.description,
+    required this.url,
+    required this.location,
+    required this.installationDate,
+  });
 
   factory PackageInfo.fromRaw(String raw) {
     final lines = raw.split('\n');
@@ -15,12 +15,12 @@ class PackageInfo {
     final dateAndTime = lines[4].split('on').last.trimLeft();
     final date = dateAndTime.replaceAll('at ', '');
     return PackageInfo(
-      firstLine.split(':').first,
-      firstLine.split(':').last.split('(').first.trim(),
-      lines[1],
-      lines[2],
-      lines[3],
-      DateTime.parse(date),
+      name: firstLine.split(':').first,
+      version: firstLine.split(':').last.split('(').first.trim(),
+      description: lines[1],
+      url: lines[2],
+      location: lines[3],
+      installationDate: DateTime.parse(date),
     );
   }
 

@@ -3,19 +3,7 @@ import 'dart:io';
 import 'package:brew_flutter/info/domain/package_info.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-// final packageNotifier =
-//     StateNotifierProvider<PackageNotifier, AsyncValue<PackageInfo>>(
-//   (ref) => PackageNotifier(),
-// );
-
 final selectedPackageProvider = StateProvider<String>((ref) => '');
-
-// final selectedPackageProvider =
-//     FutureProvider.family<PackageInfo, String?>((ref, input) async {
-//   if (input != null) return ref.watch(packageInfoProvider(input).future);
-//   final list = await ref.watch(packagesListProvider.future);
-//   return ref.watch(packageInfoProvider(list.first).future);
-// });
 
 final packageInfoProvider = FutureProvider.family<PackageInfo, String>(
   (_, package) => runBrewInfo(package),

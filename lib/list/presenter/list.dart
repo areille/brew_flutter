@@ -10,6 +10,8 @@ class PackagesList extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final packages = ref.watch(packagesListProvider);
+
+    // Set selected package as the first of the list
     ref.listen(packagesListProvider, (previous, next) {
       if (previous is AsyncLoading && next is AsyncData<List<String>>) {
         ref.read(selectedPackageProvider.notifier).state = next.value.first;

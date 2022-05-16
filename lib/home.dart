@@ -7,9 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:macos_ui/macos_ui.dart';
 
 class Home extends StatelessWidget {
-  const Home({
-    super.key,
-  });
+  const Home({super.key});
 
   @override
   Widget build(BuildContext context) {
