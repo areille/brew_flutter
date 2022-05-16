@@ -1,30 +1,7 @@
-import 'package:brew_flutter/info/presenter/package_info_view.dart';
-import 'package:brew_flutter/info/repository/info.dart';
-import 'package:brew_flutter/list/presenter/list.dart';
 import 'package:brew_flutter/list/repository/list.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:macos_ui/macos_ui.dart';
-
-class Home extends StatelessWidget {
-  const Home({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MacosWindow(
-      sidebar: Sidebar(
-        minWidth: 200,
-        top: const Search(),
-        builder: (_, __) => const PackagesList(),
-      ),
-      child: MacosScaffold(
-        children: [
-          ContentArea(builder: (_, __) => const PackageInfoView()),
-        ],
-      ),
-    );
-  }
-}
 
 class Search extends ConsumerStatefulWidget {
   const Search({super.key});

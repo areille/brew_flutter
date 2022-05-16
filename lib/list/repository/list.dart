@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rxdart/rxdart.dart';
 
+final selectedPackageProvider = StateProvider<String>((ref) => '');
 final searchInputProvider = StateProvider<String>((ref) => '');
 
 final filteredPackageListProvider = FutureProvider<List<String>>((ref) async {

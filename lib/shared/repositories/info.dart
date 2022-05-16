@@ -1,9 +1,7 @@
 import 'dart:io';
 
-import 'package:brew_flutter/info/domain/package_info.dart';
+import 'package:brew_flutter/list/domain/package_info.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-final selectedPackageProvider = StateProvider<String>((ref) => '');
 
 final packageInfoProvider = FutureProvider.family<PackageInfo, String>(
   (_, package) => runBrewInfo(package),
