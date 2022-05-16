@@ -1,4 +1,5 @@
 import 'package:brew_flutter/cleanup/repository/cleanup_repository.dart';
+import 'package:brew_flutter/cleanup/repository/cleanup_state.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:macos_ui/macos_ui.dart';
@@ -13,15 +14,11 @@ class CleanupView extends ConsumerWidget {
       toolBar: const ToolBar(title: Text('Cleanup')),
       children: [
         ContentArea(
-          builder: (_, __) => output.when(
-            data: (data) => CleanupContent(
-              data: data ?? '',
-              onStartClicked: () => ref.read(cleanupProvider.notifier).launch(),
-              onCancelClicked: () =>
-                  ref.read(cleanupProvider.notifier).cancel(),
-            ),
-            error: (e, _) => Center(child: Text(e.toString())),
-            loading: () => const Center(child: ProgressCircle()),
+          builder: (_, __) => CleanupContent(
+            state: output,
+            onStartClicked: () => ref.read(cleanupProvider.notifier).launch(),
+            onCancelClicked: () => ref.read(cleanupProvider.notifier).cancel(),
+            onClearClicked: () => ref.read(cleanupProvider.notifier).clear(),
           ),
         ),
       ],
@@ -32,25 +29,47 @@ class CleanupView extends ConsumerWidget {
 class CleanupContent extends StatelessWidget {
   const CleanupContent({
     super.key,
-    required this.data,
+    required this.state,
     required this.onStartClicked,
     required this.onCancelClicked,
+    required this.onClearClicked,
   });
 
-  final String data;
+  final CleanupState state;
   final VoidCallback onStartClicked;
   final VoidCallback onCancelClicked;
+  final VoidCallback onClearClicked;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        PushButton(
-          buttonSize: ButtonSize.large,
-          onPressed: onStartClicked,
-          child: const Text('Run brew cleanup'),
+        state.maybeWhen(
+          ready: () => PushButton(
+            buttonSize: ButtonSize.large,
+            onPressed: onStartClicked,
+            child: const Text('Run brew cleanup'),
+          ),
+          running: (_) => PushButton(
+            buttonSize: ButtonSize.large,
+            onPressed: onStartClicked,
+            child: const Text('Cancel'),
+          ),
+          orElse: () => PushButton(
+            buttonSize: ButtonSize.large,
+            onPressed: onClearClicked,
+            child: const Text('Clear'),
+          ),
         ),
-        Text(data),
+        state.maybeWhen(
+          running: (data) => Column(
+            children: [
+              Text(data),
+              const ProgressCircle(),
+            ],
+          ),
+          orElse: () => const SizedBox(),
+        ),
       ],
     );
   }

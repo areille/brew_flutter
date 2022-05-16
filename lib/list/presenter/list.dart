@@ -5,9 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:macos_ui/macos_ui.dart';
 
 class PackageListPage extends StatelessWidget {
-  const PackageListPage({
-    Key? key,
-  }) : super(key: key);
+  const PackageListPage({super.key});
 
   @override
   Widget build(BuildContext context) {
