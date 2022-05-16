@@ -13,12 +13,3 @@ Future<PackageInfo> runBrewInfo(String package) async {
     await process.stdout.map(String.fromCharCodes).join('\n'),
   );
 }
-
-class PackageNotifier extends StateNotifier<AsyncValue<PackageInfo>> {
-  PackageNotifier() : super(const AsyncValue.loading());
-
-  Future<void> get(String packageName) async {
-    state = const AsyncLoading();
-    state = await AsyncValue.guard(() => runBrewInfo(packageName));
-  }
-}

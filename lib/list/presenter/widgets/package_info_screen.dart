@@ -9,9 +9,11 @@ class PackageInfoScreen extends StatelessWidget {
   const PackageInfoScreen({
     super.key,
     required this.packageInfo,
+    required this.onUninstall,
   });
 
   final PackageInfo packageInfo;
+  final VoidCallback onUninstall;
 
   @override
   Widget build(BuildContext context) {
@@ -39,9 +41,12 @@ class PackageInfoScreen extends StatelessWidget {
                   ),
                   primaryButton: PushButton(
                     buttonSize: ButtonSize.large,
-                    onPressed: Navigator.of(context).pop,
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      onUninstall();
+                    },
                     color: CupertinoColors.destructiveRed,
-                    child: const Text('Delete'),
+                    child: const Text('Uninstall'),
                   ),
                   secondaryButton: PushButton(
                     buttonSize: ButtonSize.large,

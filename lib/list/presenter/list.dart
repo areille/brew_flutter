@@ -12,6 +12,7 @@ class PackageListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MacosScaffold(
+      toolBar: const ToolBar(title: Text('Installed packages')),
       children: [
         ResizablePane(
           minWidth: 180,
