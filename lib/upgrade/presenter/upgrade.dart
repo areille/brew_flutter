@@ -1,4 +1,5 @@
 import 'package:brew_flutter/upgrade/repository/upgrade_repository.dart';
+import 'package:brew_flutter/upgrade/repository/upgrade_state.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:macos_ui/macos_ui.dart';
@@ -13,15 +14,11 @@ class UpgradeView extends ConsumerWidget {
       toolBar: const ToolBar(title: Text('Upgrade')),
       children: [
         ContentArea(
-          builder: (_, __) => output.when(
-            data: (data) => UpgradeContent(
-              data: data ?? '',
-              onStartClicked: () => ref.read(upgradeProvider.notifier).launch(),
-              onCancelClicked: () =>
-                  ref.read(upgradeProvider.notifier).cancel(),
-            ),
-            error: (e, _) => Center(child: Text(e.toString())),
-            loading: () => const Center(child: ProgressCircle()),
+          builder: (_, __) => UpgradeContent(
+            state: output,
+            onStartClicked: () => ref.read(upgradeProvider.notifier).launch(),
+            onCancelClicked: () => ref.read(upgradeProvider.notifier).cancel(),
+            onClearClicked: () => ref.read(upgradeProvider.notifier).clear(),
           ),
         ),
       ],
@@ -32,25 +29,48 @@ class UpgradeView extends ConsumerWidget {
 class UpgradeContent extends StatelessWidget {
   const UpgradeContent({
     super.key,
-    required this.data,
+    required this.state,
     required this.onStartClicked,
     required this.onCancelClicked,
+    required this.onClearClicked,
   });
 
-  final String data;
+  final UpgradeState state;
   final VoidCallback onStartClicked;
   final VoidCallback onCancelClicked;
+  final VoidCallback onClearClicked;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        PushButton(
-          buttonSize: ButtonSize.large,
-          onPressed: onStartClicked,
-          child: const Text('Run brew upgrade'),
+        state.maybeWhen(
+          ready: () => PushButton(
+            buttonSize: ButtonSize.large,
+            onPressed: onStartClicked,
+            child: const Text('Run brew upgrade'),
+          ),
+          running: (_) => PushButton(
+            buttonSize: ButtonSize.large,
+            onPressed: onStartClicked,
+            child: const Text('Cancel'),
+          ),
+          orElse: () => PushButton(
+            buttonSize: ButtonSize.large,
+            onPressed: onClearClicked,
+            child: const Text('Clear'),
+          ),
         ),
-        Text(data),
+        state.maybeWhen(
+          running: (data) => Column(
+            children: [
+              Text(data),
+              const ProgressCircle(),
+            ],
+          ),
+          done: Text.new,
+          orElse: () => const SizedBox(),
+        ),
       ],
     );
   }
