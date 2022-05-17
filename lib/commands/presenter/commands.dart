@@ -1,6 +1,8 @@
+import 'package:brew_flutter/commands/domain/commands.dart';
 import 'package:brew_flutter/commands/presenter/widgets/command_output.dart';
 import 'package:brew_flutter/commands/repository/command_state.dart';
 import 'package:brew_flutter/commands/repository/commands_repository.dart';
+import 'package:dartx/dartx.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:macos_ui/macos_ui.dart';
@@ -33,44 +35,17 @@ class CommandsView extends ConsumerWidget {
               onPressed: () => ref.read(commandProvider.notifier).clear(),
             ),
           if (commandState is! Ready) const ToolBarDivider(),
-          ToolBarIconButton(
-            label: 'Upgrade',
-            showLabel: true,
-            icon: const MacosIcon(CupertinoIcons.arrow_up_circle),
-            tooltipMessage: 'Run brew upgrade',
-            onPressed: commandState is Ready
-                ? () => ref.read(commandProvider.notifier).launch(['upgrade'])
-                : null,
-          ),
-          ToolBarIconButton(
-            label: 'Cleanup',
-            showLabel: true,
-            icon: const MacosIcon(CupertinoIcons.trash_circle),
-            tooltipMessage: 'Run brew cleanup',
-            onPressed: commandState is Ready
-                ? () => ref.read(commandProvider.notifier).launch(['cleanup'])
-                : null,
-          ),
-          ToolBarIconButton(
-            label: 'List',
-            showLabel: true,
-            icon: const MacosIcon(
-              CupertinoIcons.line_horizontal_3_decrease_circle,
+          for (final command in Commands.values)
+            ToolBarIconButton(
+              label: command.name.capitalize(),
+              icon: MacosIcon(command.icon),
+              showLabel: true,
+              tooltipMessage: 'Run brew ${command.name}',
+              onPressed: commandState is! Running
+                  ? () =>
+                      ref.read(commandProvider.notifier).launch([command.name])
+                  : null,
             ),
-            tooltipMessage: 'Run brew list',
-            onPressed: commandState is Ready
-                ? () => ref.read(commandProvider.notifier).launch(['list'])
-                : null,
-          ),
-          ToolBarIconButton(
-            label: 'Help',
-            showLabel: true,
-            icon: const MacosIcon(CupertinoIcons.question_circle),
-            tooltipMessage: 'Run brew help',
-            onPressed: commandState is Ready
-                ? () => ref.read(commandProvider.notifier).launch(['help'])
-                : null,
-          ),
         ],
       ),
       children: [

@@ -15,7 +15,7 @@ class PackageListPage extends StatelessWidget {
         ResizablePane(
           minWidth: 180,
           resizableSide: ResizableSide.right,
-          startWidth: 200,
+          startWidth: 260,
           builder: (_, controller) => Column(
             children: [
               const SizedBox(height: 24),
