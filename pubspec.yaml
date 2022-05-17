@@ -29,4 +29,7 @@ dev_dependencies:
   very_good_analysis: ^3.0.0
 
 flutter:
-  uses-material-design: true
+  fonts:
+    - family: SourceCodePro
+      fonts:
+        - asset: fonts/SourceCodePro-Regular.ttf

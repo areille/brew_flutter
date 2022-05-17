@@ -1,3 +1,4 @@
+import 'package:brew_flutter/commands/presenter/widgets/command_output.dart';
 import 'package:brew_flutter/commands/repository/command_state.dart';
 import 'package:brew_flutter/commands/repository/commands_repository.dart';
 import 'package:flutter/cupertino.dart';
@@ -53,10 +54,21 @@ class CommandsView extends ConsumerWidget {
           ToolBarIconButton(
             label: 'List',
             showLabel: true,
-            icon: const MacosIcon(CupertinoIcons.list_dash),
+            icon: const MacosIcon(
+              CupertinoIcons.line_horizontal_3_decrease_circle,
+            ),
             tooltipMessage: 'Run brew list',
             onPressed: commandState is Ready
                 ? () => ref.read(commandProvider.notifier).launch(['list'])
+                : null,
+          ),
+          ToolBarIconButton(
+            label: 'Help',
+            showLabel: true,
+            icon: const MacosIcon(CupertinoIcons.question_circle),
+            tooltipMessage: 'Run brew help',
+            onPressed: commandState is Ready
+                ? () => ref.read(commandProvider.notifier).launch(['help'])
                 : null,
           ),
         ],
@@ -79,47 +91,6 @@ class CommandsView extends ConsumerWidget {
           ),
         ),
       ],
-    );
-  }
-}
-
-class CommandOutput extends StatelessWidget {
-  const CommandOutput({
-    super.key,
-    required this.data,
-    required this.controller,
-  });
-
-  final String data;
-  final ScrollController controller;
-
-  @override
-  Widget build(BuildContext context) {
-    return Consumer(
-      builder: (_, ref, __) {
-        ref.listen(commandProvider, (prev, next) {
-          if (next is Running || next is Done) {
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              controller.jumpTo(controller.position.maxScrollExtent);
-            });
-          }
-        });
-        return Padding(
-          padding: const EdgeInsets.all(24),
-          child: MacosScrollbar(
-            controller: controller,
-            child: Container(
-              padding: const EdgeInsets.all(8),
-              color: MacosColors.alternatingContentBackgroundColor,
-              child: ListView.builder(
-                controller: controller,
-                itemCount: data.split('\n').length,
-                itemBuilder: (ctx, i) => Text(data.split('\n')[i]),
-              ),
-            ),
-          ),
-        );
-      },
     );
   }
 }

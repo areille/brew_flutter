@@ -1,4 +1,0 @@
-enum Commands {
-  upgrade,
-  cleanup,
-}
