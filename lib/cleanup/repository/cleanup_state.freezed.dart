@@ -21,7 +21,7 @@ mixin _$CleanupState {
     required TResult Function() ready,
     required TResult Function(String data) running,
     required TResult Function(Object error, StackTrace? stackTrace) error,
-    required TResult Function() done,
+    required TResult Function(String data) done,
   }) =>
       throw _privateConstructorUsedError;
 
@@ -30,7 +30,7 @@ mixin _$CleanupState {
     TResult Function()? ready,
     TResult Function(String data)? running,
     TResult Function(Object error, StackTrace? stackTrace)? error,
-    TResult Function()? done,
+    TResult Function(String data)? done,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -47,7 +47,7 @@ class _$Ready implements Ready {
     required TResult Function() ready,
     required TResult Function(String data) running,
     required TResult Function(Object error, StackTrace? stackTrace) error,
-    required TResult Function() done,
+    required TResult Function(String data) done,
   }) {
     return ready();
   }
@@ -58,7 +58,7 @@ class _$Ready implements Ready {
     TResult Function()? ready,
     TResult Function(String data)? running,
     TResult Function(Object error, StackTrace? stackTrace)? error,
-    TResult Function()? done,
+    TResult Function(String data)? done,
     required TResult orElse(),
   }) {
     if (ready != null) {
@@ -86,7 +86,7 @@ class _$Running implements Running {
     required TResult Function() ready,
     required TResult Function(String data) running,
     required TResult Function(Object error, StackTrace? stackTrace) error,
-    required TResult Function() done,
+    required TResult Function(String data) done,
   }) {
     return running(data);
   }
@@ -97,7 +97,7 @@ class _$Running implements Running {
     TResult Function()? ready,
     TResult Function(String data)? running,
     TResult Function(Object error, StackTrace? stackTrace)? error,
-    TResult Function()? done,
+    TResult Function(String data)? done,
     required TResult orElse(),
   }) {
     if (running != null) {
@@ -129,7 +129,7 @@ class _$Error implements Error {
     required TResult Function() ready,
     required TResult Function(String data) running,
     required TResult Function(Object error, StackTrace? stackTrace) error,
-    required TResult Function() done,
+    required TResult Function(String data) done,
   }) {
     return error(this.error, stackTrace);
   }
@@ -140,7 +140,7 @@ class _$Error implements Error {
     TResult Function()? ready,
     TResult Function(String data)? running,
     TResult Function(Object error, StackTrace? stackTrace)? error,
-    TResult Function()? done,
+    TResult Function(String data)? done,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -161,7 +161,10 @@ abstract class Error implements CleanupState {
 /// @nodoc
 
 class _$Done implements Done {
-  const _$Done();
+  const _$Done(this.data);
+
+  @override
+  final String data;
 
   @override
   @optionalTypeArgs
@@ -169,9 +172,9 @@ class _$Done implements Done {
     required TResult Function() ready,
     required TResult Function(String data) running,
     required TResult Function(Object error, StackTrace? stackTrace) error,
-    required TResult Function() done,
+    required TResult Function(String data) done,
   }) {
-    return done();
+    return done(data);
   }
 
   @override
@@ -180,16 +183,18 @@ class _$Done implements Done {
     TResult Function()? ready,
     TResult Function(String data)? running,
     TResult Function(Object error, StackTrace? stackTrace)? error,
-    TResult Function()? done,
+    TResult Function(String data)? done,
     required TResult orElse(),
   }) {
     if (done != null) {
-      return done();
+      return done(data);
     }
     return orElse();
   }
 }
 
 abstract class Done implements CleanupState {
-  const factory Done() = _$Done;
+  const factory Done(final String data) = _$Done;
+
+  String get data => throw _privateConstructorUsedError;
 }

@@ -68,6 +68,7 @@ class CleanupContent extends StatelessWidget {
               const ProgressCircle(),
             ],
           ),
+          done: Text.new,
           orElse: () => const SizedBox(),
         ),
       ],

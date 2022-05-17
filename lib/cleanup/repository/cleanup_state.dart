@@ -15,5 +15,5 @@ class CleanupState with _$CleanupState {
   const factory CleanupState.running(String data) = Running;
   const factory CleanupState.error(Object error, {StackTrace? stackTrace}) =
       Error;
-  const factory CleanupState.done() = Done;
+  const factory CleanupState.done(String data) = Done;
 }

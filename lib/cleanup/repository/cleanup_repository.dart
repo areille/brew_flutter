@@ -14,26 +14,29 @@ class CleanupNotifier extends StateNotifier<CleanupState> {
 
   late StreamSubscription<String> sub;
   late Process process;
+  late String output;
 
   Future<void> launch() async {
-    state = const CleanupState.running('');
+    state = CleanupState.running(output = '');
     process = await Process.start('brew', ['cleanup']);
     sub = process.stdout.map(String.fromCharCodes).doOnData((event) {
+      output += event;
       state = CleanupState.running(event);
     }).doOnError((e, s) {
       state = CleanupState.error(e, stackTrace: s);
     }).doOnDone(() {
-      state = const CleanupState.done();
+      state = CleanupState.done(output);
     }).listen(null);
   }
 
   void cancel() {
     process.kill();
     sub.cancel();
-    state = const CleanupState.done();
+    state = CleanupState.done(output);
   }
 
   void clear() {
+    output = '';
     state = const CleanupState.ready();
   }
 
