@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'upgrade_state.dart';
+part of 'command_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$UpgradeState {
+mixin _$CommandState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() ready,
@@ -68,7 +68,7 @@ class _$Ready implements Ready {
   }
 }
 
-abstract class Ready implements UpgradeState {
+abstract class Ready implements CommandState {
   const factory Ready() = _$Ready;
 }
 
@@ -107,7 +107,7 @@ class _$Running implements Running {
   }
 }
 
-abstract class Running implements UpgradeState {
+abstract class Running implements CommandState {
   const factory Running(final String data) = _$Running;
 
   String get data => throw _privateConstructorUsedError;
@@ -150,7 +150,7 @@ class _$Error implements Error {
   }
 }
 
-abstract class Error implements UpgradeState {
+abstract class Error implements CommandState {
   const factory Error(final Object error, {final StackTrace? stackTrace}) =
       _$Error;
 
@@ -193,7 +193,7 @@ class _$Done implements Done {
   }
 }
 
-abstract class Done implements UpgradeState {
+abstract class Done implements CommandState {
   const factory Done(final String data) = _$Done;
 
   String get data => throw _privateConstructorUsedError;

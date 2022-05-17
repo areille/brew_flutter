@@ -1,6 +1,5 @@
-import 'package:brew_flutter/cleanup/presenter/cleanup.dart';
+import 'package:brew_flutter/commands/presenter/commands.dart';
 import 'package:brew_flutter/list/presenter/list.dart';
-import 'package:brew_flutter/upgrade/presenter/upgrade.dart';
 import 'package:flutter/cupertino.dart';
 
 enum Tabs {
@@ -9,15 +8,10 @@ enum Tabs {
     'Installed packages',
     PackageListPage(),
   ),
-  upgrade(
-    CupertinoIcons.up_arrow,
-    'Upgrade packages',
-    UpgradeView(),
-  ),
-  cleanup(
-    CupertinoIcons.delete,
-    'Cleanup',
-    CleanupView(),
+  commands(
+    CupertinoIcons.play,
+    'Commands',
+    CommandsView(),
   ),
   search(
     CupertinoIcons.search,
