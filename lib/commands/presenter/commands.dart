@@ -50,18 +50,12 @@ class CommandsView extends ConsumerWidget {
       ),
       children: [
         ContentArea(
-          builder: (_, scrollController) => commandState.when(
+          builder: (_) => commandState.when(
             ready: () => const Center(
               child: Text('Launch command from toolbar'),
             ),
-            running: (data) => CommandOutput(
-              data: data,
-              controller: scrollController,
-            ),
-            done: (data) => CommandOutput(
-              data: data,
-              controller: scrollController,
-            ),
+            running: (data) => CommandOutput(data: data),
+            done: (data) => CommandOutput(data: data),
             error: (e, s) => Center(child: Text(e.toString())),
           ),
         ),

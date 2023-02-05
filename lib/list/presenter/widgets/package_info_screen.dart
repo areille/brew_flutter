@@ -65,54 +65,52 @@ class PackageInfoScreen extends StatelessWidget {
       ),
       children: [
         ContentArea(
-          builder: (_, __) {
-            return Padding(
-              padding: const EdgeInsets.all(24),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text('Version:'),
-                      Text(packageInfo.version),
-                    ],
-                  ),
-                  const Divider(),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text('Description:'),
-                      Text(packageInfo.description),
-                    ],
-                  ),
-                  const Divider(),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text('Url:'),
-                      Linkable(text: packageInfo.url),
-                    ],
-                  ),
-                  const Divider(),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text('Location:'),
-                      Text(packageInfo.location),
-                    ],
-                  ),
-                  const Divider(),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text('Installed'),
-                      Text(timeago.format(packageInfo.installationDate)),
-                    ],
-                  ),
-                ],
-              ),
-            );
-          },
+          builder: (_) => Padding(
+            padding: const EdgeInsets.all(24),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text('Version:'),
+                    Text(packageInfo.version),
+                  ],
+                ),
+                const Divider(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text('Description:'),
+                    Text(packageInfo.description),
+                  ],
+                ),
+                const Divider(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text('Url:'),
+                    Linkable(text: packageInfo.url),
+                  ],
+                ),
+                const Divider(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text('Location:'),
+                    Text(packageInfo.location),
+                  ],
+                ),
+                const Divider(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text('Installed'),
+                    Text(timeago.format(packageInfo.installationDate)),
+                  ],
+                ),
+              ],
+            ),
+          ),
         )
       ],
     );

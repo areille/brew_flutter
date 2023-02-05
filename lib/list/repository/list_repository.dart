@@ -13,19 +13,13 @@ final filteredPackageListProvider = FutureProvider<List<String>>((ref) async {
 });
 
 final packagesListProvider =
-    StateNotifierProvider<PackagesListNotifier, AsyncValue<List<String>>>(
-  (_) => PackagesListNotifier(),
+    AsyncNotifierProvider<PackagesListNotifier, List<String>>(
+  PackagesListNotifier.new,
 );
 
-class PackagesListNotifier extends StateNotifier<AsyncValue<List<String>>> {
-  PackagesListNotifier() : super(const AsyncValue.loading()) {
-    _init();
-  }
-
-  Future<void> _init() async {
-    state = const AsyncValue.loading();
-    state = await AsyncValue.guard(runBrewList);
-  }
+class PackagesListNotifier extends AsyncNotifier<List<String>> {
+  @override
+  Future<List<String>> build() => runBrewList();
 
   Future<void> uninstallPackage(String package) async {
     await runBrewUninstall(package);

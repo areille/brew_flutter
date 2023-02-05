@@ -29,7 +29,7 @@ class PackageListPage extends StatelessWidget {
             ],
           ),
         ),
-        ContentArea(builder: (_, __) => const PackageInfoView()),
+        ContentArea(builder: (_) => const PackageInfoView()),
       ],
     );
   }
