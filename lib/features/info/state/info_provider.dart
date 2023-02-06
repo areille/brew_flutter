@@ -1,9 +1,8 @@
 import 'package:brew_flutter/features/info/data/info_repository.dart';
+import 'package:brew_flutter/features/info/model/package_info.dart';
 import 'package:brew_flutter/features/info/state/info_state.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
-typedef PackageName = String;
 
 class PackageInfoState extends StateNotifier<InfoState> {
   PackageInfoState(this.packageName) : super(const InfoState.loading()) {

@@ -8,10 +8,10 @@ import 'package:fpdart/fpdart.dart';
 
 TaskEither<BrewException, PackageInfo> brewInfoTE(String package) =>
     startProcessTask([Constants.brewInfoCmd, package])
-        .flatMap(processStdoutTE)
+        .flatMap(_processStdoutTE)
         .map(PackageInfo.fromRaw); // IMPURE
 
-TaskEither<BrewException, String> processStdoutTE(Process process) =>
+TaskEither<BrewException, String> _processStdoutTE(Process process) =>
     TaskEither.tryCatch(
       () => process.stdout.map(String.fromCharCodes).join('\n'),
       (err, __) => ProcessStdoutReadingException(err),

@@ -3,4 +3,6 @@ class Constants {
 
   static const brewExecutable = 'brew';
   static const brewInfoCmd = 'info';
+  static const brewListCmd = 'list';
+  static const brewUninstallCmd = 'uninstall';
 }
