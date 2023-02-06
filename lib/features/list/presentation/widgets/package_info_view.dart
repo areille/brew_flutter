@@ -1,6 +1,6 @@
-import 'package:brew_flutter/info/state/info_provider.dart';
-import 'package:brew_flutter/list/presentation/widgets/package_info_screen.dart';
-import 'package:brew_flutter/list/state/list_provider.dart';
+import 'package:brew_flutter/features/info/state/info_provider.dart';
+import 'package:brew_flutter/features/list/presentation/widgets/package_info_screen.dart';
+import 'package:brew_flutter/features/list/state/list_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:macos_ui/macos_ui.dart';

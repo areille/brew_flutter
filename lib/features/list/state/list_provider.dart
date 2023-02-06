@@ -1,4 +1,4 @@
-import 'package:brew_flutter/list/repository/list_repository.dart';
+import 'package:brew_flutter/features/list/repository/list_repository.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final selectedPackageProvider = StateProvider<String>((ref) => '');

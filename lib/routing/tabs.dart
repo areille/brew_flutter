@@ -1,5 +1,5 @@
-import 'package:brew_flutter/commands/presentation/commands.dart';
-import 'package:brew_flutter/list/presentation/list.dart';
+import 'package:brew_flutter/features/commands/presentation/commands.dart';
+import 'package:brew_flutter/features/list/presentation/list.dart';
 import 'package:flutter/cupertino.dart';
 
 enum Tabs {

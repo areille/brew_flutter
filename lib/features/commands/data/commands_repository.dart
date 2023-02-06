@@ -1,14 +1,13 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:brew_flutter/constants/brew_exe.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final brewCommandsRepositoryProvider =
     Provider((_) => BrewCommandsRepository());
 
 class BrewCommandsRepository {
-  static const kBrewExecutable = 'brew';
-
   late Stream<String> stdout;
   late Process process;
 

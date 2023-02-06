@@ -1,6 +1,6 @@
-import 'package:brew_flutter/list/presentation/widgets/package_info_view.dart';
-import 'package:brew_flutter/list/presentation/widgets/packages_list.dart';
-import 'package:brew_flutter/list/presentation/widgets/search.dart';
+import 'package:brew_flutter/features/list/presentation/widgets/package_info_view.dart';
+import 'package:brew_flutter/features/list/presentation/widgets/packages_list.dart';
+import 'package:brew_flutter/features/list/presentation/widgets/search.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:macos_ui/macos_ui.dart';
 

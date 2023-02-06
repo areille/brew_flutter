@@ -1,4 +1,4 @@
-import 'package:brew_flutter/list/state/list_provider.dart';
+import 'package:brew_flutter/features/list/state/list_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:macos_ui/macos_ui.dart';

@@ -1,4 +1,4 @@
-import 'package:brew_flutter/home/tabs.dart';
+import 'package:brew_flutter/routing/tabs.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:macos_ui/macos_ui.dart';

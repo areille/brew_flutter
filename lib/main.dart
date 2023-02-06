@@ -1,4 +1,4 @@
-import 'package:brew_flutter/home/home.dart';
+import 'package:brew_flutter/routing/home.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:macos_ui/macos_ui.dart';
