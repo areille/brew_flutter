@@ -1,4 +1,4 @@
-import 'package:brew_flutter/list/domain/package_info.dart';
+import 'package:brew_flutter/info/model/package_info.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:linkable/linkable.dart';

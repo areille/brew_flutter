@@ -1,26 +1,27 @@
 import 'dart:async';
-import 'dart:io';
 
-import 'package:brew_flutter/commands/repository/command_state.dart';
+import 'package:brew_flutter/commands/data/commands_repository.dart';
+import 'package:brew_flutter/commands/state/command_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rxdart/rxdart.dart';
 
 final commandProvider = StateNotifierProvider<CommandNotifier, CommandState>(
-  (ref) => CommandNotifier(),
+  (ref) => CommandNotifier(ref.watch(brewCommandsRepositoryProvider)),
 );
 
 class CommandNotifier extends StateNotifier<CommandState> {
-  CommandNotifier() : super(const CommandState.ready());
+  CommandNotifier(this.brewCommandsRepository)
+      : super(const CommandState.ready());
+
+  final BrewCommandsRepository brewCommandsRepository;
 
   late StreamSubscription<String> sub;
-  late Process process;
   late String output;
 
   Future<void> launch(List<String> args) async {
     state =
         CommandState.running(output = 'Running brew ${args.join(' ')}...\n\n');
-    process = await Process.start('brew', args);
-    sub = process.stdout.map(String.fromCharCodes).doOnData((event) {
+    sub = brewCommandsRepository.stdout.doOnData((event) {
       output += event;
       state = CommandState.running(output);
     }).doOnError((e, s) {
@@ -31,7 +32,7 @@ class CommandNotifier extends StateNotifier<CommandState> {
   }
 
   void cancel() {
-    process.kill();
+    brewCommandsRepository.kill();
     sub.cancel();
     state = CommandState.done('$output\nCancelled.');
   }
@@ -43,8 +44,7 @@ class CommandNotifier extends StateNotifier<CommandState> {
 
   @override
   void dispose() {
-    sub.cancel();
-    process.kill();
+    brewCommandsRepository.kill();
     super.dispose();
   }
 }

@@ -1,7 +1,7 @@
-import 'package:brew_flutter/commands/domain/commands.dart';
-import 'package:brew_flutter/commands/presenter/widgets/command_output.dart';
-import 'package:brew_flutter/commands/repository/command_state.dart';
-import 'package:brew_flutter/commands/repository/commands_repository.dart';
+import 'package:brew_flutter/commands/model/commands.dart';
+import 'package:brew_flutter/commands/presentation/widgets/command_output.dart';
+import 'package:brew_flutter/commands/state/command_provider.dart';
+import 'package:brew_flutter/commands/state/command_state.dart';
 import 'package:dartx/dartx.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
