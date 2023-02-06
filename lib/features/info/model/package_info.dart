@@ -10,16 +10,16 @@ class PackageInfo {
 
   factory PackageInfo.fromRaw(String raw) {
     final lines = raw.split('\n');
-    final firstLine = lines.first;
+    final firstLine = lines.first; // ==> aom: stable 3.5.0 (bottled)
     // Poured from bottle on 2021-11-16 at 15:31:12
     final dateAndTime = lines[4].split('on').last.trimLeft();
     final date = dateAndTime.replaceAll('at ', '');
     return PackageInfo(
-      name: firstLine.split(':').first,
+      name: firstLine.split(':').first.split(' ').last,
       version: firstLine.split(':').last.split('(').first.trim(),
       description: lines[1],
       url: lines[2],
-      location: lines[3],
+      location: lines[3].split(' ').first,
       installationDate: DateTime.parse(date),
     );
   }
