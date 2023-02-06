@@ -68,6 +68,7 @@ class PackageInfoScreen extends StatelessWidget {
           builder: (_) => Padding(
             padding: const EdgeInsets.all(24),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -77,13 +78,9 @@ class PackageInfoScreen extends StatelessWidget {
                   ],
                 ),
                 const Divider(),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text('Description:'),
-                    Text(packageInfo.description),
-                  ],
-                ),
+                const Text('Description:'),
+                const SizedBox(height: 8),
+                Text(packageInfo.description),
                 const Divider(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
