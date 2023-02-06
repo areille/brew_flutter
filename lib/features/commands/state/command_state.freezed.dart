@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'command_state.dart';
 
@@ -110,7 +110,7 @@ class _$Running implements Running {
 abstract class Running implements CommandState {
   const factory Running(final String data) = _$Running;
 
-  String get data => throw _privateConstructorUsedError;
+  String get data;
 }
 
 /// @nodoc
@@ -154,8 +154,8 @@ abstract class Error implements CommandState {
   const factory Error(final Object error, {final StackTrace? stackTrace}) =
       _$Error;
 
-  Object get error => throw _privateConstructorUsedError;
-  StackTrace? get stackTrace => throw _privateConstructorUsedError;
+  Object get error;
+  StackTrace? get stackTrace;
 }
 
 /// @nodoc
@@ -196,5 +196,5 @@ class _$Done implements Done {
 abstract class Done implements CommandState {
   const factory Done(final String data) = _$Done;
 
-  String get data => throw _privateConstructorUsedError;
+  String get data;
 }
