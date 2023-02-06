@@ -4,7 +4,9 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:macos_ui/macos_ui.dart';
 
 class PackagesList extends ConsumerWidget {
-  const PackagesList({super.key});
+  const PackagesList({super.key, required this.scrollController});
+
+  final ScrollController scrollController;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -22,6 +24,7 @@ class PackagesList extends ConsumerWidget {
     return packages.when(
       data: (packages) {
         return SidebarItems(
+          scrollController: scrollController,
           currentIndex: packages.contains(selectedPackage)
               ? packages.indexOf(selectedPackage)
               : 0,

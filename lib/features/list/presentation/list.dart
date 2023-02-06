@@ -23,7 +23,9 @@ class PackageListPage extends StatelessWidget {
               Expanded(
                 child: MacosScrollbar(
                   controller: controller,
-                  child: const PackagesList(),
+                  child: PackagesList(
+                    scrollController: controller,
+                  ),
                 ),
               ),
             ],
