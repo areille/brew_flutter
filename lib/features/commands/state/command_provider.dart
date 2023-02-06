@@ -21,6 +21,7 @@ class CommandNotifier extends StateNotifier<CommandState> {
   Future<void> launch(List<String> args) async {
     state =
         CommandState.running(output = 'Running brew ${args.join(' ')}...\n\n');
+    await brewCommandsRepository.launch(args);
     sub = brewCommandsRepository.stdout.doOnData((event) {
       output += event;
       state = CommandState.running(output);

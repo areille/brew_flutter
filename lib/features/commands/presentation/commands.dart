@@ -40,10 +40,10 @@ class CommandsView extends ConsumerWidget {
               label: command.name.capitalize(),
               icon: MacosIcon(command.icon),
               showLabel: true,
-              tooltipMessage: 'Run brew ${command.name}',
+              tooltipMessage: 'Run brew ${command.args.join(' ')}',
               onPressed: commandState is! Running
                   ? () =>
-                      ref.read(commandProvider.notifier).launch([command.name])
+                      ref.read(commandProvider.notifier).launch(command.args)
                   : null,
             ),
         ],
