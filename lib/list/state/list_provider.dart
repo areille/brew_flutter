@@ -1,5 +1,5 @@
 import 'package:brew_flutter/list/repository/list_repository.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final selectedPackageProvider = StateProvider<String>((ref) => '');
 final searchInputProvider = StateProvider<String>((ref) => '');

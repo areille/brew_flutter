@@ -14,8 +14,9 @@ dependencies:
   dartx: ^1.1.0
   flutter:
     sdk: flutter
-  flutter_riverpod: ^2.0.0-dev.7
+  flutter_hooks: ^0.18.5+1
   freezed_annotation: ^2.0.3
+  hooks_riverpod: ^2.1.3
   linkable: ^3.0.1
   macos_ui: ^1.4.1
   rxdart: ^0.27.3

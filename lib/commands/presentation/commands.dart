@@ -4,7 +4,7 @@ import 'package:brew_flutter/commands/state/command_provider.dart';
 import 'package:brew_flutter/commands/state/command_state.dart';
 import 'package:dartx/dartx.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:macos_ui/macos_ui.dart';
 
 class CommandsView extends ConsumerWidget {

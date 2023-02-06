@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:brew_flutter/commands/data/commands_repository.dart';
 import 'package:brew_flutter/commands/state/command_state.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:rxdart/rxdart.dart';
 
 final commandProvider = StateNotifierProvider<CommandNotifier, CommandState>(

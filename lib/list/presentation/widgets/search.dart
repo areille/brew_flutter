@@ -1,20 +1,16 @@
 import 'package:brew_flutter/list/state/list_provider.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:macos_ui/macos_ui.dart';
 
-class Search extends ConsumerStatefulWidget {
+class Search extends HookConsumerWidget {
   const Search({super.key});
 
   @override
-  ConsumerState<Search> createState() => _SearchState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final searchFieldController = useTextEditingController();
 
-class _SearchState extends ConsumerState<Search> {
-  late final searchFieldController = TextEditingController();
-
-  @override
-  Widget build(BuildContext context) {
     final list = ref.watch(filteredPackageListProvider);
     return list.maybeWhen(
       data: (packages) => MacosSearchField<String>(
