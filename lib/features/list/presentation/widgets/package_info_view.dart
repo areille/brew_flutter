@@ -17,12 +17,12 @@ class PackageInfoView extends ConsumerWidget {
     final packageInfo = ref.watch(packageInfoProvider(selectedPackage));
 
     return packageInfo.when(
-      data: (info) => PackageInfoScreen(
+      success: (info) => PackageInfoScreen(
         packageInfo: info,
         onUninstall: () =>
             ref.read(packagesListProvider.notifier).uninstallPackage(info.name),
       ),
-      error: (err, _) => Center(child: Text(err.toString())),
+      error: (err) => Center(child: Text(err)),
       loading: () => const Center(child: ProgressCircle()),
     );
   }

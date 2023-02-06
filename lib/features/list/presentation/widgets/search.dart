@@ -13,7 +13,7 @@ class Search extends HookConsumerWidget {
 
     final list = ref.watch(filteredPackageListProvider);
     return list.maybeWhen(
-      data: (packages) => MacosSearchField<String>(
+      success: (packages) => MacosSearchField<String>(
         controller: searchFieldController,
         results: packages.map(SearchResultItem.new).toList(),
         onResultSelected: (res) {

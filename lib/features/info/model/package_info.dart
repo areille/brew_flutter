@@ -1,3 +1,5 @@
+typedef PackageName = String;
+
 class PackageInfo {
   PackageInfo({
     required this.name,
@@ -24,7 +26,7 @@ class PackageInfo {
     );
   }
 
-  final String name;
+  final PackageName name;
   final String version;
   final String description;
   final String url;
