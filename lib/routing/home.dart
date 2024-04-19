@@ -20,7 +20,7 @@ class Home extends ConsumerWidget {
           scrollController: controller,
           items: [
             for (final tab in Tabs.values)
-              SidebarItem(label: Text(tab.title), leading: MacosIcon(tab.icon))
+              SidebarItem(label: Text(tab.title), leading: MacosIcon(tab.icon)),
           ],
         ),
       ),

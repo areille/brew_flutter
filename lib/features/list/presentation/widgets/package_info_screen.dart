@@ -7,9 +7,9 @@ import 'package:timeago/timeago.dart' as timeago;
 
 class PackageInfoScreen extends StatelessWidget {
   const PackageInfoScreen({
-    super.key,
     required this.packageInfo,
     required this.onUninstall,
+    super.key,
   });
 
   final PackageInfo packageInfo;
@@ -40,7 +40,7 @@ class PackageInfoScreen extends StatelessWidget {
                     'Are you sure you want to uninstall ${packageInfo.name}?',
                   ),
                   primaryButton: PushButton(
-                    buttonSize: ButtonSize.large,
+                    controlSize: ControlSize.large,
                     onPressed: () {
                       Navigator.of(context).pop();
                       onUninstall();
@@ -49,8 +49,8 @@ class PackageInfoScreen extends StatelessWidget {
                     child: const Text('Uninstall'),
                   ),
                   secondaryButton: PushButton(
-                    buttonSize: ButtonSize.large,
-                    isSecondary: true,
+                    controlSize: ControlSize.large,
+                    secondary: true,
                     onPressed: Navigator.of(context).pop,
                     child: const Text('Cancel'),
                   ),
@@ -65,7 +65,7 @@ class PackageInfoScreen extends StatelessWidget {
       ),
       children: [
         ContentArea(
-          builder: (_) => Padding(
+          builder: (_, __) => Padding(
             padding: const EdgeInsets.all(24),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -108,7 +108,7 @@ class PackageInfoScreen extends StatelessWidget {
               ],
             ),
           ),
-        )
+        ),
       ],
     );
   }

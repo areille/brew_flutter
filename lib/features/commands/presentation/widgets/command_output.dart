@@ -3,8 +3,8 @@ import 'package:macos_ui/macos_ui.dart';
 
 class CommandOutput extends StatelessWidget {
   const CommandOutput({
-    super.key,
     required this.data,
+    super.key,
   });
 
   final String data;

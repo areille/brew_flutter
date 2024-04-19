@@ -50,7 +50,7 @@ class CommandsView extends ConsumerWidget {
       ),
       children: [
         ContentArea(
-          builder: (_) => commandState.when(
+          builder: (_, __) => commandState.when(
             ready: () => const Center(
               child: Text('Launch command from toolbar'),
             ),

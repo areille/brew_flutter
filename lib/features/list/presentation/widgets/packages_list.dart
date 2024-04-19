@@ -4,7 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:macos_ui/macos_ui.dart';
 
 class PackagesList extends ConsumerWidget {
-  const PackagesList({super.key, required this.scrollController});
+  const PackagesList({required this.scrollController, super.key});
 
   final ScrollController scrollController;
 
@@ -32,7 +32,7 @@ class PackagesList extends ConsumerWidget {
             ref.read(selectedPackageProvider.notifier).state = packages[i];
           },
           items: [
-            for (final package in packages) SidebarItem(label: Text(package))
+            for (final package in packages) SidebarItem(label: Text(package)),
           ],
         );
       },

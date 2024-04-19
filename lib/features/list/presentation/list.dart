@@ -13,9 +13,9 @@ class PackageListPage extends StatelessWidget {
       toolBar: const ToolBar(title: Text('Installed packages')),
       children: [
         ResizablePane(
-          minWidth: 180,
+          minSize: 180,
           resizableSide: ResizableSide.right,
-          startWidth: 260,
+          startSize: 260,
           builder: (_, controller) => Column(
             children: [
               const SizedBox(height: 24),
@@ -31,7 +31,7 @@ class PackageListPage extends StatelessWidget {
             ],
           ),
         ),
-        ContentArea(builder: (_) => const PackageInfoView()),
+        ContentArea(builder: (_, __) => const PackageInfoView()),
       ],
     );
   }
